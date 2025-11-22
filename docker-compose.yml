@@ -1,0 +1,24 @@
+services:
+  smtp2api:
+    build: .
+    container_name: smtp2api
+    ports:
+      - "8025:8025"
+    environment:
+      - API_URL=${API_URL:-http://host.docker.internal:8000/api/email}
+      - SMTP_HOST=0.0.0.0
+      - SMTP_PORT=8025
+      - SENTRY_DSN=${SENTRY_DSN}
+    restart: unless-stopped
+    # Uncomment the following lines to mount the source code for development
+    # volumes:
+    #   - ./app:/app/app
+
+    # Optional: Mock API for testing
+    # mock-api:
+    #   image: python:3.11-slim
+    #   volumes:
+    #     - ./tests:/tests
+    #   command: python /tests/mock_api.py
+    #   ports:
+    #     - "8000:8000"

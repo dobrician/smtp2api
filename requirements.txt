@@ -1,0 +1,8 @@
+aiosmtpd
+requests
+python-dotenv
+aiohttp
+pytest
+pytest-asyncio
+aioresponses
+sentry-sdk
